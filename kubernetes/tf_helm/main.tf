@@ -23,17 +23,17 @@ resource "helm_release" "my-kubernetes-dashboard" {
   }
 
   set {
-    name = "service.externalPort"
+    name  = "service.externalPort"
     value = 80
   }
 
   set {
-    name = "replicaCount"
+    name  = "replicaCount"
     value = 2
   }
 
   set {
-    name = "rbac.clusterReadOnlyRole"
+    name  = "rbac.clusterReadOnlyRole"
     value = "true"
   }
 }
