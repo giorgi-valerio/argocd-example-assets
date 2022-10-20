@@ -2,15 +2,21 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: my-app-2
-  namespace: argocd
+  namespace: openshift-gitops
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argocd
+    namespace: multi-apps
     server: https://kubernetes.default.svc
   project: default
   source:
     path: argocd/my-apps/app-2
-    repoURL: https://gitlab.com/ayush-sharma/example-assets.git
+    repoURL: https://github.com/giorgi-valerio/argocd-example-assets.git
     targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
